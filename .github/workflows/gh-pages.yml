@@ -10,8 +10,8 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}/main.pdf
+      name: GitHub Pages
+      url: ${{ steps.deployment.outputs.page_url }}main.pdf
     permissions:
       pages: write
       id-token: write
@@ -21,7 +21,8 @@ jobs:
       # - name: Install fonts
       #   run: sudo apt install fonts-noto fonts-noto-cjk fonts-noto-cjk-extra
       - uses: typst-community/setup-typst@v3
-      - run: |
+      - name: Compile
+        run: |
           mkdir ./out
           typst compile ./main.typ ./out/main.pdf
       - uses: actions/upload-pages-artifact@v2
