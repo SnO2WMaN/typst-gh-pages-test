@@ -15,9 +15,11 @@ jobs:
       - name: Install fonts
         run: sudo apt install fonts-noto fonts-noto-cjk fonts-noto-cjk-extra
       - uses: typst-community/setup-typst@v3
-      - run: typst compile ./main.typ ./main.pdf
+      - run: |
+          mkdir ./out
+          typst compile ./main.typ ./out/main.pdf
       - uses: actions/upload-pages-artifact@v2
         with:
-          path: ./main.pdf
+          path: ./out
       - uses: actions/deploy-pages@v1
         id: deployment
